@@ -1,6 +1,6 @@
-!! Linux auto backups
+# Linux auto backups
 
-==Overview==
+## Overview
 
 This is a modification of Nick Masluk's excellent Linux backup script at http://www.randombytes.org/backups.html (first script on that page).
 
@@ -15,12 +15,12 @@ Changes and additions:
 
 Otherwise, the mechanics are the same as in Nick's original script -- read the introduction at http://www.randombytes.org/backups.html for more.
 
-==Installation==
+## Installation
 
 Clone this repo into some folder, e.g. autobackup.
 Then create the necessary directories and files:
 
-``
+```
 cd autobackup
 echo 'placeholder file' > .identity
 
@@ -31,7 +31,7 @@ echo 'placeholder file -- where the snapshots live' > .identity
 mkdir $HOME"/files_backup_tars/"
 mkdir $HOME"/logs"
 mkdir $HOME"/sql_backup"
-``
+```
 
 You can modify the locations of these files at the top of autobackup.sh.
 
@@ -39,33 +39,33 @@ You can modify the locations of these files at the top of autobackup.sh.
 
 For example, here is an excerpt of my `paths_to_backup.txt`:
 
-``
+```
 /home/maxim;my files and backups
 /home/shannon;other user files
 /etc/apache2;apache config
 /var/www;web root
-``
+```
 
 Now, let's configure the MySQL backups. Open a MySQL shell and create a read-only backup user:
 
-``
+```
 grant select, lock tables on *.* to 'backupuser'@'localhost' identified by 'password';
 flush privileges;
-``
+```
 
 Now, we need to put the backup user's authentication information, as well as Azure storage information, in our environment variables. Edit your `~/.bash_profile` (or similar) as follows:
 
-``
+```
 export MYSQL_BACKUP_PASSWORD="the password you set above"
 export AZURE_STORAGE_ACCOUNT=account
 export AZURE_STORAGE_ACCESS_KEY='storage access key'
-``
+```
 
 We need to make these environment variables available when we run the script through sudo. This means we must also run `sudo visudo` and include this line:
 
-``
+```
 Defaults env_keep += "MYSQL_BACKUP_PASSWORD AZURE_STORAGE_ACCOUNT AZURE_STORAGE_ACCESS_KEY"
-``
+```
 
 (Alternatively, you can run the script using `sudo -E autobackup.sh`, which acts as a one-off run that includes our environment variables.)
 
@@ -83,19 +83,19 @@ sudo python setup.py install
 
 We're ready to launch the backup.
 
-==Running==
+## Running
 
 To run manually:
 
-``
+```
 sudo ./autobackup.sh
-``
+```
 
 View logs at $HOME/logs or in stdout.
 
 To run nightly:
 
-
+(TODO)
 
 Monitor logs for errors -- especially upload errors, in which case the tar directory will continue holding tars that have not yet been uploaded.
 
