@@ -16,6 +16,9 @@
 # specify storage container name here (will be created if doesn't exist)
 storage_container_name = 'quantabackups'
 
+# verify MD5 on upload?
+verify_md5 = True
+
 
 # get file paths to upload
 import sys
@@ -54,10 +57,12 @@ def md5_for_file(f, block_size=2**20):
 # do the uploads
 for p in paths:
     blob_name = path_leaf(p)
-    original_md5 = md5_for_file(open(p, 'rb'))
-    blob_service.put_block_blob_from_path(storage_container_name, blob_name, p, content_md5=original_md5) # specify md5 to do an md5 check automatically
-    #serverside_md5 = blob_service.get_blob_properties(storage_container_name, blob_name)['content-md5'] # get md5 of uploaded blob
-    # https://github.com/Azure/azure-sdk-for-python/blob/master/azure/storage/blobservice.py
-    
+    if verify_md5:
+        original_md5 = md5_for_file(open(p, 'rb'))
+        blob_service.put_block_blob_from_path(storage_container_name, blob_name, p, content_md5=original_md5) # specify md5 to do an md5 check automatically
+        # serverside_md5 = blob_service.get_blob_properties(storage_container_name, blob_name)['content-md5'] # get md5 of uploaded blob
+        # see https://github.com/Azure/azure-sdk-for-python/blob/master/azure/storage/blobservice.py
+    else:
+        blob_service.put_block_blob_from_path(storage_container_name, blob_name, p)
 
 print 'uploaded'

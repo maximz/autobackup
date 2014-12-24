@@ -198,10 +198,10 @@ ERROR2=${PIPESTATUS[0]}
 
 # now clear that dir
 if [ $ERROR2 -eq 0 ]; then
-echo "clearing tar directory" | $LOG_CMD
+echo "all uploads succeeded, clearing tar directory" | $LOG_CMD
 rm $BACKUP_TARS/*.tar.gz
 else
-echo "upload failed; not clearing tar directory"
+echo "upload failed; not clearing tar directory"  | $LOG_CMD
 fi
 
 

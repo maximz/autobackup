@@ -93,9 +93,11 @@ sudo ./autobackup.sh
 
 View logs at $HOME/logs or in stdout.
 
-To run nightly:
+To run automatically at every midniht: run `crontab -e` and add the line:
 
-(TODO)
+```
+@daily source ~/.bash_profile; cd ~/autobackup; sudo ./autobackup.sh
+```
 
 Monitor logs for errors -- especially upload errors, in which case the tar directory will continue holding tars that have not yet been uploaded.
 
