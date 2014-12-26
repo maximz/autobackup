@@ -96,7 +96,7 @@ View logs at $HOME/logs or in stdout.
 To run automatically at every midniht: run `crontab -e` and add the line:
 
 ```
-@daily source ~/.bash_profile; cd ~/autobackup; sudo ./autobackup.sh
+@daily . ~/.bash_profile; cd ~/autobackup; sudo ./autobackup.sh
 ```
 
 Monitor logs for errors -- especially upload errors, in which case the tar directory will continue holding tars that have not yet been uploaded.
