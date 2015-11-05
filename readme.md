@@ -1,4 +1,4 @@
-# Linux auto backups
+# Simple Linux automatic backups to local and cloud storage
 
 ## Overview
 
@@ -106,4 +106,4 @@ Monitor logs for errors -- especially upload errors, in which case the tar direc
 
 ## Open issues
 
-Uploading fails for tars over 64MB (when chunked uploads kick in). See the issue I filed over at the Azure SDK Python repo: https://github.com/Azure/azure-sdk-for-python/issues/264
+Uploading fails for tars over 64MB (which is when chunked uploads kick in) if we enable MD5 hash validation upon upload. See the issue I filed over at the Azure SDK Python repo: https://github.com/Azure/azure-sdk-for-python/issues/264. For now, MD5 hash validation upon upload is disabled to avoid the issue.
