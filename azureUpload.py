@@ -29,7 +29,7 @@ print 'uploading', len(paths), 'files'
 
 
 # setup azure connection
-from azure.storage import BlobService
+from azure.storage.blob import BlobService
 blob_service = BlobService()
 # make sure container exists
 blob_service.create_container(storage_container_name) # can't use underscores    
