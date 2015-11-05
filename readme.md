@@ -1,4 +1,4 @@
-# Simple Linux automatic backups to local and cloud storage
+# Simple, automated backups to local and cloud storage from Linux servers
 
 ## Overview
 
