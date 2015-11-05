@@ -17,7 +17,7 @@
 storage_container_name = 'quantabackups'
 
 # verify MD5 on upload?
-verify_md5 = True
+verify_md5 = False #True # disabled because of the open issue
 
 
 # get file paths to upload
