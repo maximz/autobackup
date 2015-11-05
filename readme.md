@@ -4,7 +4,9 @@
 
 This is a modification of Nick Masluk's excellent Linux backup script at http://www.randombytes.org/backups.html (first script on that page).
 
-Changes and additions:
+I use it to backup mysql, certain directories, and the installed package list on my server. You can modify it to backup anything you'd like.
+
+Changes and additions I made to Nick Masluk's script:
 
 * Prior to the backup, we run a separate script to dump all of mysql and installed packages (follow instructions at http://askubuntu.com/questions/9135/how-to-backup-settings-and-list-of-installed-packages to restore from the dump of installed packages)
 * Rather than only being able to backup one directory, we now pass in a list of paths to backup, and we back them up recursively (i.e. we include all subdirectories)
@@ -27,7 +29,7 @@ echo 'placeholder file' > .identity
 nano $HOME"/paths_to_backup.txt" # put backup paths here, as explained below
 
 mkdir $HOME"/files_backup/"
-echo 'placeholder file -- where the snapshots live' > .identity
+echo 'placeholder file -- where the snapshots live' > $HOME"/files_backup/.identity"
 mkdir $HOME"/files_backup_tars/"
 mkdir $HOME"/logs"
 mkdir $HOME"/sql_backup"
