@@ -76,11 +76,9 @@ Change your desired container name in azureUpload.py as needed.
 Finally, install the Python requirements:
 
 ```
-sudo pip install python-dateutil
-curl -L -O https://github.com/WindowsAzure/azure-sdk-for-python/archive/master.tar.gz
-tar xzf master.tar.gz
-cd azure-sdk-for-python-master/src
-sudo python setup.py install
+sudo apt-get update && sudo apt-get install -y python python-dev python-pip python-virtualenv; # if you don't have python and pip yet
+sudo pip install python-dateutil;
+sudo pip install azure;
 ```
 
 We're ready to launch the backup.
